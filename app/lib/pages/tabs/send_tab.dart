@@ -177,9 +177,7 @@ class SendTab extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(width: 10),
-                _ScanButton(
-                  ips: vm.localIps,
-                ),
+                _ScanButton(),
                 Tooltip(
                   message: t.sendTab.manualSending,
                   child: CustomIconButton(
@@ -312,13 +310,11 @@ class _CircularPopupButton<T> extends StatelessWidget {
   }
 }
 
-/// The scan button that uses [_CircularPopupButton].
+/// The scan button. Always runs the staged discovery, which announces
+/// multicast, probes favorites, and falls back to scanning the `/24` subnet
+/// of every local interface after a short grace period.
 class _ScanButton extends StatelessWidget {
-  final List<String> ips;
-
-  const _ScanButton({
-    required this.ips,
-  });
+  const _ScanButton();
 
   @override
   Widget build(BuildContext context) {
@@ -328,75 +324,20 @@ class _ScanButton extends StatelessWidget {
     final spinning = (scanningFavorites || scanningIps.isNotEmpty) && animations;
     final iconColor = !animations && scanningIps.isNotEmpty ? Theme.of(context).colorScheme.warning : null;
 
-    if (ips.length <= StartSmartScan.maxInterfaces) {
-      return Tooltip(
-        message: t.sendTab.scan,
-        child: RotatingWidget(
-          duration: const Duration(seconds: 2),
-          spinning: spinning,
-          reverse: true,
-          child: CustomIconButton(
-            onPressed: () async {
-              context.redux(nearbyDevicesProvider).dispatch(ClearFoundDevicesAction());
-              await context.global.dispatchAsync(StartSmartScan());
-            },
-            child: Icon(Icons.sync, color: iconColor),
-          ),
-        ),
-      );
-    }
-
-    return _CircularPopupButton(
-      tooltip: t.sendTab.scan,
-      onSelected: (ip) async {
-        context.redux(nearbyDevicesProvider).dispatch(ClearFoundDevicesAction());
-        await context.global.dispatchAsync(StartLegacySubnetScan(subnets: [ip]));
-      },
-      itemBuilder: (_) {
-        return [
-          ...ips.map(
-            (ip) => PopupMenuItem(
-              value: ip,
-              padding: const EdgeInsets.only(left: 12, right: 8),
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  _RotatingSyncIcon(ip),
-                  const SizedBox(width: 10),
-                  Text(ip),
-                ],
-              ),
-            ),
-          ),
-        ];
-      },
+    return Tooltip(
+      message: t.sendTab.scan,
       child: RotatingWidget(
         duration: const Duration(seconds: 2),
         spinning: spinning,
         reverse: true,
-        child: Padding(
-          padding: const EdgeInsets.all(8),
+        child: CustomIconButton(
+          onPressed: () async {
+            context.redux(nearbyDevicesProvider).dispatch(ClearFoundDevicesAction());
+            await context.global.dispatchAsync(StartSmartScan());
+          },
           child: Icon(Icons.sync, color: iconColor),
         ),
       ),
-    );
-  }
-}
-
-/// A separate widget, so it gets the latest data from provider.
-class _RotatingSyncIcon extends StatelessWidget {
-  final String ip;
-
-  const _RotatingSyncIcon(this.ip);
-
-  @override
-  Widget build(BuildContext context) {
-    final scanningIps = context.ref.watch(nearbyDevicesProvider.select((s) => s.runningIps));
-    return RotatingWidget(
-      duration: const Duration(seconds: 2),
-      spinning: scanningIps.contains(ip),
-      reverse: true,
-      child: const Icon(Icons.sync),
     );
   }
 }

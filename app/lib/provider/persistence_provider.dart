@@ -9,6 +9,8 @@ import 'package:localsend_app/model/persistence/color_mode.dart';
 import 'package:localsend_app/model/persistence/favorite_device.dart';
 import 'package:localsend_app/model/persistence/quick_save_mode.dart';
 import 'package:localsend_app/model/persistence/receive_history_entry.dart';
+import 'package:localsend_app/model/persistence/sync_contact.dart';
+import 'package:localsend_app/model/persistence/sync_share.dart';
 import 'package:localsend_app/model/send_mode.dart';
 import 'package:localsend_app/provider/window_dimensions_provider.dart';
 import 'package:localsend_app/util/alias_generator.dart';
@@ -57,6 +59,15 @@ const _receiveHistory = 'ls_receive_history';
 
 // Favorites
 const _favorites = 'ls_favorites';
+
+// Directory sync: shares the local device exposes to the network. See
+// `support/sync_design.md` and `provider/sync/`.
+const _syncShares = 'ls_sync_shares';
+
+// Directory sync: contacts that have ever shared with us (auto-merged
+// from multicast discovery and via manual add). The WeChat-style
+// contact page reads from this and the home screen watches it.
+const _syncContacts = 'ls_sync_contacts';
 
 // App Window Offset and Size info
 const _windowOffsetX = 'ls_window_offset_x';
@@ -273,6 +284,28 @@ class PersistenceService {
   Future<void> setFavorites(List<FavoriteDevice> entries) async {
     final favoritesRaw = entries.map((entry) => jsonEncode(entry.toJson())).toList();
     await _prefs.setStringList(_favorites, favoritesRaw);
+  }
+
+  List<SyncShare> getSyncShares() {
+    final sharesRaw = _prefs.getStringList(_syncShares) ?? [];
+    return sharesRaw.map((entry) => SyncShare.fromJson(jsonDecode(entry) as Map<String, dynamic>)).toList();
+  }
+
+  Future<void> setSyncShares(List<SyncShare> entries) async {
+    final sharesRaw = entries.map((entry) => jsonEncode(entry.toJson())).toList();
+    await _prefs.setStringList(_syncShares, sharesRaw);
+  }
+
+  List<SyncContact> getSyncContacts() {
+    final raw = _prefs.getStringList(_syncContacts) ?? [];
+    return raw
+        .map((entry) => SyncContact.fromJson(jsonDecode(entry) as Map<String, dynamic>))
+        .toList();
+  }
+
+  Future<void> setSyncContacts(List<SyncContact> entries) async {
+    final raw = entries.map((entry) => jsonEncode(entry.toJson())).toList();
+    await _prefs.setStringList(_syncContacts, raw);
   }
 
   String getShowToken() {

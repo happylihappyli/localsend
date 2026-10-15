@@ -159,7 +159,186 @@
       "privacyPolicy": "Privacy Policy",
       "termsOfUse": "Terms of Use"
     },
+    "syncShares": {
+      "title": "Directory sync",
+      "subtitle": "Share folders with other LocalSend devices. They can browse the tree and pick which files to mirror.",
+      "shares": "Shared directories",
+      "add": "Share a directory",
+      "empty": "No directories shared yet. Tap “{add}” to add one.",
+      "delete": "Stop sharing",
+      "restartHint": "Changes take effect after the next server restart."
+    },
+    "shareDialog": {
+      "title": "Share a directory",
+      "editTitle": "Edit shared directory",
+      "name": "Display name",
+      "nameHint": "e.g. Project notes",
+      "root": "Folder",
+      "rootPlaceholder": "No folder selected",
+      "pick": "Pick…",
+      "excludes": "Exclude patterns",
+      "excludesHint": "One per line, gitignore-style. Lines starting with # are comments.",
+      "save": "Save",
+      "remove": "Remove",
+      "nameRequired": "Please enter a display name.",
+      "rootRequired": "Please pick a folder."
+    },
+    "browseShares": {
+      "title": "Browse shared directories",
+      "button": "Browse shared directories",
+      "empty": "No devices are sharing any directories right now. The list updates as devices come and go.",
+      "loading": "Looking for shared directories…",
+      "openShare": "Browse files",
+      "probing": "Probing…",
+      "probeError": "Could not reach {alias}: {error}",
+      "noShares": "{alias} is online but has nothing to share."
+    },
+    "browseTree": {
+      "title": "Pick files from {share}",
+      "from": "From: {alias}",
+      "target": "Save to: {path}",
+      "targetPlaceholder": "No folder selected",
+      "pickTarget": "Pick a folder…",
+      "selectAll": "Select all",
+      "deselectAll": "Deselect all",
+      "itemsSelected(plural, param=count)": {
+        "zero": "No files selected",
+        "one": "1 file selected",
+        "other": "{count} files selected"
+      },
+      "start": "Start sync",
+      "loadingTree": "Loading…",
+      "treeError": "Could not read directory {path}: {error}"
+    },
+    "syncSession": {
+      "title": "Sync {share} from {alias}",
+      "preparing": "Preparing…",
+      "contacting": "Talking to the sender…",
+      "progress": "{done} of {total} files",
+      "remaining(plural, param=count)": {
+        "zero": "All files done",
+        "one": "1 file left",
+        "other": "{count} files left"
+      },
+      "failedShort(plural, param=count)": {
+        "zero": "",
+        "one": "1 file failed",
+        "other": "{count} files failed"
+      },
+      "cancel": "Cancel",
+      "cancelTitle": "Cancel sync?",
+      "cancelBody": "Files already downloaded will stay on disk. The next sync will start fresh.",
+      "cancelConfirm": "Cancel sync",
+      "dismiss": "Done",
+      "done": "Sync complete",
+      "downloaded": "Downloaded",
+      "skipped": "Skipped",
+      "failed": "Failed",
+      "failedHeader": "Sync failed",
+      "cancelled": "Sync cancelled",
+      "conflictsHeader(plural, param=count)": {
+        "zero": "No conflicts",
+        "one": "1 conflict to resolve",
+        "other": "{count} conflicts to resolve"
+      },
+      "conflictsPending(plural, param=count)": {
+        "zero": "All conflicts resolved. Tap Apply to finish.",
+        "one": "1 conflict still needs a decision",
+        "other": "{count} conflicts still need a decision"
+      },
+      "conflictPending": "Pending",
+      "apply": "Apply",
+      "actionButton": "Resolve conflicts",
+      "actionHint": "Conflicts need a decision before the sync can finish. Use the centralised list to choose per file or apply a default action in bulk."
+    },
+    "syncConflict": {
+      "title": "Conflict: {path}",
+      "localLabel": "Local",
+      "remoteLabel": "Remote",
+      "keepLocal": "Keep local",
+      "keepRemote": "Keep remote",
+      "keepBoth": "Keep both",
+      "skip": "Skip",
+      "remaining(plural, param=count)": {
+        "zero": "No conflicts left",
+        "one": "1 conflict left",
+        "other": "{count} conflicts left"
+      }
+    },
     "advancedSettings": "Advanced settings"
+  },
+  "contactsPage": {
+    "title": "Contacts",
+    "searchHint": "Search contacts",
+    "pending(count)": "{count} pending",
+    "trusted": "Trusted",
+    "untrusted": "Not yet trusted",
+    "sections": {
+      "paired": "Paired",
+      "nearby": "Nearby"
+    },
+    "empty": {
+      "none": "No contacts yet. Other LocalSend devices will appear here as they join the network.",
+      "filtered": "No contacts match the search."
+    },
+    "menu": {
+      "rename": "Rename",
+      "fingerprint": "View fingerprint",
+      "trust": "Trust",
+      "untrust": "Revoke trust",
+      "delete": "Delete"
+    },
+    "renameDialog": {
+      "title": "Rename contact",
+      "label": "Display name"
+    },
+    "trustDialog": {
+      "title": "Trust this device?",
+      "body": "Verify that the fingerprint below matches the one shown on \"{alias}\". Once trusted, this device can sync shared directories with you.",
+      "confirm": "Trust"
+    },
+    "confirmDeleteTitle": "Delete contact?",
+    "confirmDeleteBody": "Remove \"{alias}\" from your contacts? Any active sync sessions will be cancelled."
+  },
+  "contactDetailPage": {
+    "title": "Contact",
+    "notFound": "This contact no longer exists.",
+    "tabs": {
+      "chat": "Chat",
+      "send": "Send",
+      "browse": "Browse"
+    },
+    "chatPlaceholder": {
+      "title": "Chat is coming in v2",
+      "body": "Text messages between LocalSend devices will be available in a future release."
+    },
+    "sendHint": {
+      "title": "Send files",
+      "body": "Switch to the Send tab to pick files for \"{alias}\". The contact list is read-only from this view."
+    },
+    "browseHint": {
+      "title": "Browse shared directories",
+      "body": "See what \"{alias}\" is sharing on the network. The full directory picker opens in a separate page.",
+      "action": "Browse shared directories"
+    }
+  },
+  "pendingSyncPage": {
+    "title": "Pending conflicts",
+    "empty": {
+      "none": "No conflicts to resolve. Start a sync to see what needs your decision.",
+      "resolved": "All conflicts resolved. Apply to finish the sync."
+    },
+    "summary(pending, total)": "{pending} of {total} unresolved",
+    "selectAll": "Select all",
+    "clearSelection": "Clear",
+    "localSize(bytes)": "Local: {bytes} B",
+    "remoteSize(bytes)": "Remote: {bytes} B",
+    "bulk": {
+      "keepLocal": "Keep local",
+      "takeRemote": "Take remote",
+      "skip": "Skip"
+    },
+    "apply": "Apply"
   },
   "troubleshootPage": {
     "title": "Troubleshoot",

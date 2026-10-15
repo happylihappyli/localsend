@@ -13,6 +13,7 @@ use crate::http::server::internal::{InternalConfig, InternalState};
 use crate::http::server::v2::ServerEventV2;
 use crate::http::server::web::{WebConfig, WebShare};
 use crate::http::state::ClientInfo;
+use crate::sync::http::{SyncHttpState, SyncShareConfig};
 use common::client_cert_verifier::CustomClientCertVerifier;
 use common::error::AppError;
 use common::response;
@@ -48,6 +49,10 @@ pub struct ServerConfigV2 {
 
     /// Channel on which the server emits events that must be handled by the application.
     pub event_tx: mpsc::Sender<ServerEventV2>,
+
+    /// Directory-sync shares exposed under `/api/localsend/sync/{id}/*`.
+    /// Empty disables the sync routes; the rest of the v2 server is unchanged.
+    pub sync_shares: Vec<SyncShareConfig>,
 }
 
 /// Runtime state of the v2 protocol endpoints.
@@ -90,6 +95,9 @@ pub struct AppState {
 
     /// Limits the connections being served, shared by the IPv4 and IPv6 listeners.
     connection_limiter: Arc<ConnectionLimiter>,
+
+    /// State of the directory-sync endpoints. `None` disables the sync routes.
+    sync: Option<Arc<SyncHttpState>>,
 }
 
 impl AppState {
@@ -99,15 +107,24 @@ impl AppState {
         v2_config: Option<ServerConfigV2>,
         web_config: WebConfig,
     ) -> Self {
-        let v2 = v2_config.map(|config| {
-            Arc::new(V2State {
-                pin: config.pin,
-                verify_checksums: config.verify_checksums,
-                event_tx: config.event_tx,
-                session: Mutex::new(None),
-                pin_attempts: Mutex::new(LruCache::new(NonZeroUsize::new(200).unwrap())),
-            })
-        });
+        let (v2, sync) = match v2_config {
+            Some(config) => {
+                let v2 = Arc::new(V2State {
+                    pin: config.pin,
+                    verify_checksums: config.verify_checksums,
+                    event_tx: config.event_tx,
+                    session: Mutex::new(None),
+                    pin_attempts: Mutex::new(LruCache::new(NonZeroUsize::new(200).unwrap())),
+                });
+                // Always create a sync state when v2 is enabled, even with
+                // zero shares, so `GET /api/localsend/sync/` returns `[]`
+                // instead of a confusing 404. The receiver probes the list
+                // endpoint to decide whether to show the device at all.
+                let sync = Some(Arc::new(SyncHttpState::new(config.sync_shares)));
+                (Some(v2), sync)
+            }
+            None => (None, None),
+        };
 
         let internal = internal_config.map(|config| Arc::new(InternalState::new(config)));
 
@@ -123,8 +140,8 @@ impl AppState {
             ))),
             v2,
             connection_limiter: ConnectionLimiter::new(MAX_CONNECTIONS, MAX_CONNECTIONS_PER_IP),
+            sync,
         }
-    }
 }
 
 /// A handle to a running server for interactions initiated by the application
@@ -622,6 +639,15 @@ async fn handle_request_inner(mut req: Request<Incoming>) -> Result<Response<Box
     let Some(client_info) = req.extensions_mut().remove::<RequestClientInfo>() else {
         return Err(AppError::Status(StatusCode::INTERNAL_SERVER_ERROR));
     };
+
+    // Directory-sync routes are matched by path prefix before the main match
+    // so the share id can be extracted from the URL.
+    if let Some(sync) = &state.sync {
+        let path = req.uri().path().to_string();
+        if let Some(suffix) = path.strip_prefix("/api/localsend/sync/") {
+            return crate::sync::http::handle(req, sync, &client_info, suffix).await;
+        }
+    }
 
     let v2_enabled = state.v2.is_some();
 

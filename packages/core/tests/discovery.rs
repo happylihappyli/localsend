@@ -74,6 +74,7 @@ async fn start_register_server(
             pin: None,
             verify_checksums: true,
             event_tx,
+            sync_shares: vec![],
         }),
         WebConfig::default(),
         stop_rx,

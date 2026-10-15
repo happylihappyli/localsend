@@ -157,7 +157,96 @@
       "privacyPolicy": "隐私政策",
       "termsOfUse": "使用条款"
     },
-    "advancedSettings": "高级设置"
+    "advancedSettings": "高级设置",
+    "syncSession": {
+      "conflictsHeader(plural, param=count)": {
+        "zero": "无冲突",
+        "one": "1 个待处理冲突",
+        "other": "{count} 个待处理冲突"
+      },
+      "conflictsPending(plural, param=count)": {
+        "zero": "全部冲突已决策，点 Apply 完成同步。",
+        "one": "还有 1 个冲突需要决策",
+        "other": "还有 {count} 个冲突需要决策"
+      },
+      "conflictPending": "待决策",
+      "apply": "应用",
+      "actionButton": "去决策",
+      "actionHint": "需要先决策冲突才能完成同步。可在集中列表里逐个选择，或一次性应用默认动作。"
+    }
+  },
+  "contactsPage": {
+    "title": "联系人",
+    "searchHint": "搜索联系人",
+    "pending(count)": "{count} 个待处理",
+    "trusted": "已配对",
+    "untrusted": "未配对",
+    "sections": {
+      "paired": "已配对",
+      "nearby": "附近"
+    },
+    "empty": {
+      "none": "暂无联系人。其他 LocalSend 设备加入网络后会显示在此处。",
+      "filtered": "没有匹配的联系人。"
+    },
+    "menu": {
+      "rename": "重命名",
+      "fingerprint": "查看指纹",
+      "trust": "信任",
+      "untrust": "取消信任",
+      "delete": "删除"
+    },
+    "renameDialog": {
+      "title": "重命名联系人",
+      "label": "显示名称"
+    },
+    "trustDialog": {
+      "title": "信任此设备？",
+      "body": "请确认下面的指纹与 \"{alias}\" 上显示的一致。信任后该设备可与你同步共享目录。",
+      "confirm": "信任"
+    },
+    "confirmDeleteTitle": "删除联系人？",
+    "confirmDeleteBody": "从联系人列表中移除 \"{alias}\"？所有进行中的同步将被取消。"
+  },
+  "contactDetailPage": {
+    "title": "联系人",
+    "notFound": "该联系人已不存在。",
+    "tabs": {
+      "chat": "聊天",
+      "send": "发送",
+      "browse": "浏览"
+    },
+    "chatPlaceholder": {
+      "title": "聊天功能将在 v2 提供",
+      "body": "LocalSend 设备间的文字消息将在后续版本中提供。"
+    },
+    "sendHint": {
+      "title": "发送文件",
+      "body": "切换到「发送」标签为 \"{alias}\" 挑选文件。本视图的联系人列表为只读。"
+    },
+    "browseHint": {
+      "title": "浏览共享目录",
+      "body": "查看 \"{alias}\" 在网络上共享的目录。完整目录选择器将在另一页打开。",
+      "action": "浏览共享目录"
+    }
+  },
+  "pendingSyncPage": {
+    "title": "待处理冲突",
+    "empty": {
+      "none": "没有需要解决的冲突。开始一次同步即可看到需要你决策的项。",
+      "resolved": "所有冲突已解决。点击「应用」完成同步。"
+    },
+    "summary(pending, total)": "{pending} / {total} 待解决",
+    "selectAll": "全选",
+    "clearSelection": "清空",
+    "localSize(bytes)": "本地：{bytes} B",
+    "remoteSize(bytes)": "远端：{bytes} B",
+    "bulk": {
+      "keepLocal": "保留本地",
+      "takeRemote": "下载覆盖",
+      "skip": "跳过"
+    },
+    "apply": "应用"
   },
   "troubleshootPage": {
     "title": "故障排除",

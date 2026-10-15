@@ -65,6 +65,7 @@ async fn start_server_with_stalled_events(
             pin: None,
             verify_checksums: true,
             event_tx,
+            sync_shares: vec![],
         }),
         WebConfig::default(),
         stop_rx,

@@ -211,6 +211,7 @@ impl App {
                 pin: None,
                 verify_checksums: true,
                 event_tx: self.server_tx.clone(),
+                sync_shares: vec![],
             }),
             WebConfig {
                 mode: web_mode,

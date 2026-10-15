@@ -83,6 +83,7 @@ async fn server_survives_descriptor_exhaustion() {
             pin: None,
             verify_checksums: true,
             event_tx,
+            sync_shares: vec![],
         }),
         WebConfig::default(),
         stop_rx,

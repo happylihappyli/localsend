@@ -4,6 +4,7 @@ import 'package:localsend_app/model/state/server/server_state.dart';
 import 'package:localsend_app/pages/home_page.dart';
 import 'package:localsend_app/pages/home_page_controller.dart';
 import 'package:localsend_app/pages/receive_history_page.dart';
+import 'package:localsend_app/pages/sync/contacts_page.dart';
 import 'package:localsend_app/pages/web_share_page.dart';
 import 'package:localsend_app/provider/animation_provider.dart';
 import 'package:localsend_app/provider/local_ip_provider.dart';
@@ -111,6 +112,19 @@ class _ReceiveTabState extends State<ReceiveTab> {
                         },
                         icon: Icon(Icons.language),
                         label: Text(t.receiveTab.link),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 0),
+                    child: Center(
+                      child: OutlinedButton.icon(
+                        onPressed: () async {
+                          await context.push(() => const ContactsPage());
+                        },
+                        icon: const Icon(Icons.contacts),
+                        label: Text(t.contactsPage.title),
                       ),
                     ),
                   ),

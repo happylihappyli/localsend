@@ -10,15 +10,15 @@ import 'package:refena_flutter/refena_flutter.dart';
 /// favorite probes right away, http-based discovery on the subnets only when
 /// nothing was confirmed within 1 second.
 class StartSmartScan extends AsyncGlobalAction {
-  /// Maximum number of interfaces to scan.
-  /// If there are more interfaces, the first ones will be used or the user needs to select one.
-  static const maxInterfaces = 3;
-
   @override
   Future<void> reduce() async {
     final favorites = ref.read(favoritesProvider);
     final settings = ref.read(settingsProvider);
-    final networkInterfaces = ref.read(localIpProvider).localIps.take(maxInterfaces).toList();
+    // Scan every interface the host exposes: capping the list silently drops
+    // devices on the other subnets. The staged discovery is cheap (announce +
+    // favorites), and the subnet-scan fallback only runs for interfaces where
+    // nothing was confirmed.
+    final networkInterfaces = ref.read(localIpProvider).localIps.toList();
 
     await ref
         .redux(nearbyDevicesProvider)

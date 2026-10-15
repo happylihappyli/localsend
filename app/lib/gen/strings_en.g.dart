@@ -50,6 +50,9 @@ class Translations with BaseTranslations<AppLocale, Translations> {
   late final Translations$receiveTab$en receiveTab = Translations$receiveTab$en.internal(_root);
   late final Translations$sendTab$en sendTab = Translations$sendTab$en.internal(_root);
   late final Translations$settingsTab$en settingsTab = Translations$settingsTab$en.internal(_root);
+  late final Translations$contactsPage$en contactsPage = Translations$contactsPage$en.internal(_root);
+  late final Translations$contactDetailPage$en contactDetailPage = Translations$contactDetailPage$en.internal(_root);
+  late final Translations$pendingSyncPage$en pendingSyncPage = Translations$pendingSyncPage$en.internal(_root);
   late final Translations$troubleshootPage$en troubleshootPage = Translations$troubleshootPage$en.internal(_root);
   late final Translations$networkInterfacesPage$en networkInterfacesPage = Translations$networkInterfacesPage$en.internal(_root);
   late final Translations$receiveHistoryPage$en receiveHistoryPage = Translations$receiveHistoryPage$en.internal(_root);
@@ -276,9 +279,105 @@ class Translations$settingsTab$en {
   late final Translations$settingsTab$send$en send = Translations$settingsTab$send$en.internal(_root);
   late final Translations$settingsTab$network$en network = Translations$settingsTab$network$en.internal(_root);
   late final Translations$settingsTab$other$en other = Translations$settingsTab$other$en.internal(_root);
+  late final Translations$settingsTab$syncShares$en syncShares = Translations$settingsTab$syncShares$en.internal(_root);
+  late final Translations$settingsTab$shareDialog$en shareDialog = Translations$settingsTab$shareDialog$en.internal(_root);
+  late final Translations$settingsTab$browseShares$en browseShares = Translations$settingsTab$browseShares$en.internal(_root);
+  late final Translations$settingsTab$browseTree$en browseTree = Translations$settingsTab$browseTree$en.internal(_root);
+  late final Translations$settingsTab$syncSession$en syncSession = Translations$settingsTab$syncSession$en.internal(_root);
+  late final Translations$settingsTab$syncConflict$en syncConflict = Translations$settingsTab$syncConflict$en.internal(_root);
 
   /// en: 'Advanced settings'
   String get advancedSettings => 'Advanced settings';
+}
+
+// Path: contactsPage
+class Translations$contactsPage$en {
+  Translations$contactsPage$en.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// en: 'Contacts'
+  String get title => 'Contacts';
+
+  /// en: 'Search contacts'
+  String get searchHint => 'Search contacts';
+
+  /// en: '{count} pending'
+  String pending({required Object count}) => '${count} pending';
+
+  /// en: 'Trusted'
+  String get trusted => 'Trusted';
+
+  /// en: 'Not yet trusted'
+  String get untrusted => 'Not yet trusted';
+
+  late final Translations$contactsPage$sections$en sections = Translations$contactsPage$sections$en.internal(_root);
+  late final Translations$contactsPage$empty$en empty = Translations$contactsPage$empty$en.internal(_root);
+  late final Translations$contactsPage$menu$en menu = Translations$contactsPage$menu$en.internal(_root);
+  late final Translations$contactsPage$renameDialog$en renameDialog = Translations$contactsPage$renameDialog$en.internal(_root);
+  late final Translations$contactsPage$trustDialog$en trustDialog = Translations$contactsPage$trustDialog$en.internal(_root);
+
+  /// en: 'Delete contact?'
+  String get confirmDeleteTitle => 'Delete contact?';
+
+  /// en: 'Remove "{alias}" from your contacts? Any active sync sessions will be cancelled.'
+  String confirmDeleteBody({required Object alias}) => 'Remove "${alias}" from your contacts? Any active sync sessions will be cancelled.';
+}
+
+// Path: contactDetailPage
+class Translations$contactDetailPage$en {
+  Translations$contactDetailPage$en.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// en: 'Contact'
+  String get title => 'Contact';
+
+  /// en: 'This contact no longer exists.'
+  String get notFound => 'This contact no longer exists.';
+
+  late final Translations$contactDetailPage$tabs$en tabs = Translations$contactDetailPage$tabs$en.internal(_root);
+  late final Translations$contactDetailPage$chatPlaceholder$en chatPlaceholder = Translations$contactDetailPage$chatPlaceholder$en.internal(_root);
+  late final Translations$contactDetailPage$sendHint$en sendHint = Translations$contactDetailPage$sendHint$en.internal(_root);
+  late final Translations$contactDetailPage$browseHint$en browseHint = Translations$contactDetailPage$browseHint$en.internal(_root);
+}
+
+// Path: pendingSyncPage
+class Translations$pendingSyncPage$en {
+  Translations$pendingSyncPage$en.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// en: 'Pending conflicts'
+  String get title => 'Pending conflicts';
+
+  late final Translations$pendingSyncPage$empty$en empty = Translations$pendingSyncPage$empty$en.internal(_root);
+
+  /// en: '{pending} of {total} unresolved'
+  String summary({required Object pending, required Object total}) => '${pending} of ${total} unresolved';
+
+  /// en: 'Select all'
+  String get selectAll => 'Select all';
+
+  /// en: 'Clear'
+  String get clearSelection => 'Clear';
+
+  /// en: 'Local: {bytes} B'
+  String localSize({required Object bytes}) => 'Local: ${bytes} B';
+
+  /// en: 'Remote: {bytes} B'
+  String remoteSize({required Object bytes}) => 'Remote: ${bytes} B';
+
+  late final Translations$pendingSyncPage$bulk$en bulk = Translations$pendingSyncPage$bulk$en.internal(_root);
+
+  /// en: 'Apply'
+  String get apply => 'Apply';
 }
 
 // Path: troubleshootPage
@@ -1241,6 +1340,488 @@ class Translations$settingsTab$other$en {
 
   /// en: 'Terms of Use'
   String get termsOfUse => 'Terms of Use';
+}
+
+// Path: settingsTab.syncShares
+class Translations$settingsTab$syncShares$en {
+  Translations$settingsTab$syncShares$en.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// en: 'Directory sync'
+  String get title => 'Directory sync';
+
+  /// en: 'Share folders with other LocalSend devices. They can browse the tree and pick which files to mirror.'
+  String get subtitle => 'Share folders with other LocalSend devices. They can browse the tree and pick which files to mirror.';
+
+  /// en: 'Shared directories'
+  String get shares => 'Shared directories';
+
+  /// en: 'Share a directory'
+  String get add => 'Share a directory';
+
+  /// en: 'No directories shared yet. Tap “{add}” to add one.'
+  String empty({required Object add}) => 'No directories shared yet. Tap “${add}” to add one.';
+
+  /// en: 'Stop sharing'
+  String get delete => 'Stop sharing';
+
+  /// en: 'Changes take effect after the next server restart.'
+  String get restartHint => 'Changes take effect after the next server restart.';
+}
+
+// Path: settingsTab.shareDialog
+class Translations$settingsTab$shareDialog$en {
+  Translations$settingsTab$shareDialog$en.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// en: 'Share a directory'
+  String get title => 'Share a directory';
+
+  /// en: 'Edit shared directory'
+  String get editTitle => 'Edit shared directory';
+
+  /// en: 'Display name'
+  String get name => 'Display name';
+
+  /// en: 'e.g. Project notes'
+  String get nameHint => 'e.g. Project notes';
+
+  /// en: 'Folder'
+  String get root => 'Folder';
+
+  /// en: 'No folder selected'
+  String get rootPlaceholder => 'No folder selected';
+
+  /// en: 'Pick…'
+  String get pick => 'Pick…';
+
+  /// en: 'Exclude patterns'
+  String get excludes => 'Exclude patterns';
+
+  /// en: 'One per line, gitignore-style. Lines starting with # are comments.'
+  String get excludesHint => 'One per line, gitignore-style. Lines starting with # are comments.';
+
+  /// en: 'Save'
+  String get save => 'Save';
+
+  /// en: 'Remove'
+  String get remove => 'Remove';
+
+  /// en: 'Please enter a display name.'
+  String get nameRequired => 'Please enter a display name.';
+
+  /// en: 'Please pick a folder.'
+  String get rootRequired => 'Please pick a folder.';
+}
+
+// Path: settingsTab.browseShares
+class Translations$settingsTab$browseShares$en {
+  Translations$settingsTab$browseShares$en.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// en: 'Browse shared directories'
+  String get title => 'Browse shared directories';
+
+  /// en: 'Browse shared directories'
+  String get button => 'Browse shared directories';
+
+  /// en: 'No devices are sharing any directories right now. The list updates as devices come and go.'
+  String get empty => 'No devices are sharing any directories right now. The list updates as devices come and go.';
+
+  /// en: 'Looking for shared directories…'
+  String get loading => 'Looking for shared directories…';
+
+  /// en: 'Browse files'
+  String get openShare => 'Browse files';
+
+  /// en: 'Probing…'
+  String get probing => 'Probing…';
+
+  /// en: 'Could not reach {alias}: {error}'
+  String probeError({required Object alias, required Object error}) => 'Could not reach ${alias}: ${error}';
+
+  /// en: '{alias} is online but has nothing to share.'
+  String noShares({required Object alias}) => '${alias} is online but has nothing to share.';
+}
+
+// Path: settingsTab.browseTree
+class Translations$settingsTab$browseTree$en {
+  Translations$settingsTab$browseTree$en.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// en: 'Pick files from {share}'
+  String title({required Object share}) => 'Pick files from ${share}';
+
+  /// en: 'From: {alias}'
+  String from({required Object alias}) => 'From: ${alias}';
+
+  /// en: 'Save to: {path}'
+  String target({required Object path}) => 'Save to: ${path}';
+
+  /// en: 'No folder selected'
+  String get targetPlaceholder => 'No folder selected';
+
+  /// en: 'Pick a folder…'
+  String get pickTarget => 'Pick a folder…';
+
+  /// en: 'Select all'
+  String get selectAll => 'Select all';
+
+  /// en: 'Deselect all'
+  String get deselectAll => 'Deselect all';
+
+  /// en: '(zero) {No files selected} (one) {1 file selected} (other) {{count} files selected}'
+  String itemsSelected({required num count}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+    count,
+    zero: 'No files selected',
+    one: '1 file selected',
+    other: '${count} files selected',
+  );
+
+  /// en: 'Start sync'
+  String get start => 'Start sync';
+
+  /// en: 'Loading…'
+  String get loadingTree => 'Loading…';
+
+  /// en: 'Could not read directory {path}: {error}'
+  String treeError({required Object path, required Object error}) => 'Could not read directory ${path}: ${error}';
+}
+
+// Path: settingsTab.syncSession
+class Translations$settingsTab$syncSession$en {
+  Translations$settingsTab$syncSession$en.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// en: 'Sync {share} from {alias}'
+  String title({required Object share, required Object alias}) => 'Sync ${share} from ${alias}';
+
+  /// en: 'Preparing…'
+  String get preparing => 'Preparing…';
+
+  /// en: 'Talking to the sender…'
+  String get contacting => 'Talking to the sender…';
+
+  /// en: '{done} of {total} files'
+  String progress({required Object done, required Object total}) => '${done} of ${total} files';
+
+  /// en: '(zero) {All files done} (one) {1 file left} (other) {{count} files left}'
+  String remaining({required num count}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+    count,
+    zero: 'All files done',
+    one: '1 file left',
+    other: '${count} files left',
+  );
+
+  /// en: '(zero) {} (one) {1 file failed} (other) {{count} files failed}'
+  String failedShort({required num count}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+    count,
+    zero: '',
+    one: '1 file failed',
+    other: '${count} files failed',
+  );
+
+  /// en: 'Cancel'
+  String get cancel => 'Cancel';
+
+  /// en: 'Cancel sync?'
+  String get cancelTitle => 'Cancel sync?';
+
+  /// en: 'Files already downloaded will stay on disk. The next sync will start fresh.'
+  String get cancelBody => 'Files already downloaded will stay on disk. The next sync will start fresh.';
+
+  /// en: 'Cancel sync'
+  String get cancelConfirm => 'Cancel sync';
+
+  /// en: 'Done'
+  String get dismiss => 'Done';
+
+  /// en: 'Sync complete'
+  String get done => 'Sync complete';
+
+  /// en: 'Downloaded'
+  String get downloaded => 'Downloaded';
+
+  /// en: 'Skipped'
+  String get skipped => 'Skipped';
+
+  /// en: 'Failed'
+  String get failed => 'Failed';
+
+  /// en: 'Sync failed'
+  String get failedHeader => 'Sync failed';
+
+  /// en: 'Sync cancelled'
+  String get cancelled => 'Sync cancelled';
+
+  /// en: '(zero) {No conflicts} (one) {1 conflict to resolve} (other) {{count} conflicts to resolve}'
+  String conflictsHeader({required num count}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+    count,
+    zero: 'No conflicts',
+    one: '1 conflict to resolve',
+    other: '${count} conflicts to resolve',
+  );
+
+  /// en: '(zero) {All conflicts resolved. Tap Apply to finish.} (one) {1 conflict still needs a decision} (other) {{count} conflicts still need a decision}'
+  String conflictsPending({required num count}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+    count,
+    zero: 'All conflicts resolved. Tap Apply to finish.',
+    one: '1 conflict still needs a decision',
+    other: '${count} conflicts still need a decision',
+  );
+
+  /// en: 'Pending'
+  String get conflictPending => 'Pending';
+
+  /// en: 'Apply'
+  String get apply => 'Apply';
+
+  /// en: 'Resolve conflicts'
+  String get actionButton => 'Resolve conflicts';
+
+  /// en: 'Conflicts need a decision before the sync can finish. Use the centralised list to choose per file or apply a default action in bulk.'
+  String get actionHint =>
+      'Conflicts need a decision before the sync can finish. Use the centralised list to choose per file or apply a default action in bulk.';
+}
+
+// Path: settingsTab.syncConflict
+class Translations$settingsTab$syncConflict$en {
+  Translations$settingsTab$syncConflict$en.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// en: 'Conflict: {path}'
+  String title({required Object path}) => 'Conflict: ${path}';
+
+  /// en: 'Local'
+  String get localLabel => 'Local';
+
+  /// en: 'Remote'
+  String get remoteLabel => 'Remote';
+
+  /// en: 'Keep local'
+  String get keepLocal => 'Keep local';
+
+  /// en: 'Keep remote'
+  String get keepRemote => 'Keep remote';
+
+  /// en: 'Keep both'
+  String get keepBoth => 'Keep both';
+
+  /// en: 'Skip'
+  String get skip => 'Skip';
+
+  /// en: '(zero) {No conflicts left} (one) {1 conflict left} (other) {{count} conflicts left}'
+  String remaining({required num count}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(
+    count,
+    zero: 'No conflicts left',
+    one: '1 conflict left',
+    other: '${count} conflicts left',
+  );
+}
+
+// Path: contactsPage.sections
+class Translations$contactsPage$sections$en {
+  Translations$contactsPage$sections$en.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// en: 'Paired'
+  String get paired => 'Paired';
+
+  /// en: 'Nearby'
+  String get nearby => 'Nearby';
+}
+
+// Path: contactsPage.empty
+class Translations$contactsPage$empty$en {
+  Translations$contactsPage$empty$en.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// en: 'No contacts yet. Other LocalSend devices will appear here as they join the network.'
+  String get none => 'No contacts yet. Other LocalSend devices will appear here as they join the network.';
+
+  /// en: 'No contacts match the search.'
+  String get filtered => 'No contacts match the search.';
+}
+
+// Path: contactsPage.menu
+class Translations$contactsPage$menu$en {
+  Translations$contactsPage$menu$en.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// en: 'Rename'
+  String get rename => 'Rename';
+
+  /// en: 'View fingerprint'
+  String get fingerprint => 'View fingerprint';
+
+  /// en: 'Trust'
+  String get trust => 'Trust';
+
+  /// en: 'Revoke trust'
+  String get untrust => 'Revoke trust';
+
+  /// en: 'Delete'
+  String get delete => 'Delete';
+}
+
+// Path: contactsPage.renameDialog
+class Translations$contactsPage$renameDialog$en {
+  Translations$contactsPage$renameDialog$en.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// en: 'Rename contact'
+  String get title => 'Rename contact';
+
+  /// en: 'Display name'
+  String get label => 'Display name';
+}
+
+// Path: contactsPage.trustDialog
+class Translations$contactsPage$trustDialog$en {
+  Translations$contactsPage$trustDialog$en.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// en: 'Trust this device?'
+  String get title => 'Trust this device?';
+
+  /// en: 'Verify that the fingerprint below matches the one shown on "{alias}". Once trusted, this device can sync shared directories with you.'
+  String body({required Object alias}) =>
+      'Verify that the fingerprint below matches the one shown on "${alias}". Once trusted, this device can sync shared directories with you.';
+
+  /// en: 'Trust'
+  String get confirm => 'Trust';
+}
+
+// Path: contactDetailPage.tabs
+class Translations$contactDetailPage$tabs$en {
+  Translations$contactDetailPage$tabs$en.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// en: 'Chat'
+  String get chat => 'Chat';
+
+  /// en: 'Send'
+  String get send => 'Send';
+
+  /// en: 'Browse'
+  String get browse => 'Browse';
+}
+
+// Path: contactDetailPage.chatPlaceholder
+class Translations$contactDetailPage$chatPlaceholder$en {
+  Translations$contactDetailPage$chatPlaceholder$en.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// en: 'Chat is coming in v2'
+  String get title => 'Chat is coming in v2';
+
+  /// en: 'Text messages between LocalSend devices will be available in a future release.'
+  String get body => 'Text messages between LocalSend devices will be available in a future release.';
+}
+
+// Path: contactDetailPage.sendHint
+class Translations$contactDetailPage$sendHint$en {
+  Translations$contactDetailPage$sendHint$en.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// en: 'Send files'
+  String get title => 'Send files';
+
+  /// en: 'Switch to the Send tab to pick files for "{alias}". The contact list is read-only from this view.'
+  String body({required Object alias}) => 'Switch to the Send tab to pick files for "${alias}". The contact list is read-only from this view.';
+}
+
+// Path: contactDetailPage.browseHint
+class Translations$contactDetailPage$browseHint$en {
+  Translations$contactDetailPage$browseHint$en.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// en: 'Browse shared directories'
+  String get title => 'Browse shared directories';
+
+  /// en: 'See what "{alias}" is sharing on the network. The full directory picker opens in a separate page.'
+  String body({required Object alias}) => 'See what "${alias}" is sharing on the network. The full directory picker opens in a separate page.';
+
+  /// en: 'Browse shared directories'
+  String get action => 'Browse shared directories';
+}
+
+// Path: pendingSyncPage.empty
+class Translations$pendingSyncPage$empty$en {
+  Translations$pendingSyncPage$empty$en.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// en: 'No conflicts to resolve. Start a sync to see what needs your decision.'
+  String get none => 'No conflicts to resolve. Start a sync to see what needs your decision.';
+
+  /// en: 'All conflicts resolved. Apply to finish the sync.'
+  String get resolved => 'All conflicts resolved. Apply to finish the sync.';
+}
+
+// Path: pendingSyncPage.bulk
+class Translations$pendingSyncPage$bulk$en {
+  Translations$pendingSyncPage$bulk$en.internal(this._root);
+
+  final Translations _root; // ignore: unused_field
+
+  // Translations
+
+  /// en: 'Keep local'
+  String get keepLocal => 'Keep local';
+
+  /// en: 'Take remote'
+  String get takeRemote => 'Take remote';
+
+  /// en: 'Skip'
+  String get skip => 'Skip';
 }
 
 // Path: troubleshootPage.firewall

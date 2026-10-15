@@ -50,6 +50,12 @@ class TranslationsZhCn extends Translations with BaseTranslations<AppLocale, Tra
   @override
   late final Translations$settingsTab$zh_CN settingsTab = Translations$settingsTab$zh_CN.internal(_root);
   @override
+  late final Translations$contactsPage$zh_CN contactsPage = Translations$contactsPage$zh_CN.internal(_root);
+  @override
+  late final Translations$contactDetailPage$zh_CN contactDetailPage = Translations$contactDetailPage$zh_CN.internal(_root);
+  @override
+  late final Translations$pendingSyncPage$zh_CN pendingSyncPage = Translations$pendingSyncPage$zh_CN.internal(_root);
+  @override
   late final Translations$troubleshootPage$zh_CN troubleshootPage = Translations$troubleshootPage$zh_CN.internal(_root);
   @override
   late final Translations$networkInterfacesPage$zh_CN networkInterfacesPage = Translations$networkInterfacesPage$zh_CN.internal(_root);
@@ -255,6 +261,91 @@ class Translations$settingsTab$zh_CN extends Translations$settingsTab$en {
   late final Translations$settingsTab$other$zh_CN other = Translations$settingsTab$other$zh_CN.internal(_root);
   @override
   String get advancedSettings => '高级设置';
+  @override
+  late final Translations$settingsTab$syncSession$zh_CN syncSession = Translations$settingsTab$syncSession$zh_CN.internal(_root);
+}
+
+// Path: contactsPage
+class Translations$contactsPage$zh_CN extends Translations$contactsPage$en {
+  Translations$contactsPage$zh_CN.internal(TranslationsZhCn root) : this._root = root, super.internal(root);
+
+  final TranslationsZhCn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get title => '联系人';
+  @override
+  String get searchHint => '搜索联系人';
+  @override
+  String pending({required Object count}) => '${count} 个待处理';
+  @override
+  String get trusted => '已配对';
+  @override
+  String get untrusted => '未配对';
+  @override
+  late final Translations$contactsPage$sections$zh_CN sections = Translations$contactsPage$sections$zh_CN.internal(_root);
+  @override
+  late final Translations$contactsPage$empty$zh_CN empty = Translations$contactsPage$empty$zh_CN.internal(_root);
+  @override
+  late final Translations$contactsPage$menu$zh_CN menu = Translations$contactsPage$menu$zh_CN.internal(_root);
+  @override
+  late final Translations$contactsPage$renameDialog$zh_CN renameDialog = Translations$contactsPage$renameDialog$zh_CN.internal(_root);
+  @override
+  late final Translations$contactsPage$trustDialog$zh_CN trustDialog = Translations$contactsPage$trustDialog$zh_CN.internal(_root);
+  @override
+  String get confirmDeleteTitle => '删除联系人？';
+  @override
+  String confirmDeleteBody({required Object alias}) => '从联系人列表中移除 "${alias}"？所有进行中的同步将被取消。';
+}
+
+// Path: contactDetailPage
+class Translations$contactDetailPage$zh_CN extends Translations$contactDetailPage$en {
+  Translations$contactDetailPage$zh_CN.internal(TranslationsZhCn root) : this._root = root, super.internal(root);
+
+  final TranslationsZhCn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get title => '联系人';
+  @override
+  String get notFound => '该联系人已不存在。';
+  @override
+  late final Translations$contactDetailPage$tabs$zh_CN tabs = Translations$contactDetailPage$tabs$zh_CN.internal(_root);
+  @override
+  late final Translations$contactDetailPage$chatPlaceholder$zh_CN chatPlaceholder = Translations$contactDetailPage$chatPlaceholder$zh_CN.internal(
+    _root,
+  );
+  @override
+  late final Translations$contactDetailPage$sendHint$zh_CN sendHint = Translations$contactDetailPage$sendHint$zh_CN.internal(_root);
+  @override
+  late final Translations$contactDetailPage$browseHint$zh_CN browseHint = Translations$contactDetailPage$browseHint$zh_CN.internal(_root);
+}
+
+// Path: pendingSyncPage
+class Translations$pendingSyncPage$zh_CN extends Translations$pendingSyncPage$en {
+  Translations$pendingSyncPage$zh_CN.internal(TranslationsZhCn root) : this._root = root, super.internal(root);
+
+  final TranslationsZhCn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get title => '待处理冲突';
+  @override
+  late final Translations$pendingSyncPage$empty$zh_CN empty = Translations$pendingSyncPage$empty$zh_CN.internal(_root);
+  @override
+  String summary({required Object pending, required Object total}) => '${pending} / ${total} 待解决';
+  @override
+  String get selectAll => '全选';
+  @override
+  String get clearSelection => '清空';
+  @override
+  String localSize({required Object bytes}) => '本地：${bytes} B';
+  @override
+  String remoteSize({required Object bytes}) => '远端：${bytes} B';
+  @override
+  late final Translations$pendingSyncPage$bulk$zh_CN bulk = Translations$pendingSyncPage$bulk$zh_CN.internal(_root);
+  @override
+  String get apply => '应用';
 }
 
 // Path: troubleshootPage
@@ -1065,6 +1156,194 @@ class Translations$settingsTab$other$zh_CN extends Translations$settingsTab$othe
   String get privacyPolicy => '隐私政策';
   @override
   String get termsOfUse => '使用条款';
+}
+
+// Path: settingsTab.syncSession
+class Translations$settingsTab$syncSession$zh_CN extends Translations$settingsTab$syncSession$en {
+  Translations$settingsTab$syncSession$zh_CN.internal(TranslationsZhCn root) : this._root = root, super.internal(root);
+
+  final TranslationsZhCn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String conflictsHeader({required num count}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(
+    count,
+    zero: '无冲突',
+    one: '1 个待处理冲突',
+    other: '${count} 个待处理冲突',
+  );
+  @override
+  String conflictsPending({required num count}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(
+    count,
+    zero: '全部冲突已决策，点 Apply 完成同步。',
+    one: '还有 1 个冲突需要决策',
+    other: '还有 ${count} 个冲突需要决策',
+  );
+  @override
+  String get conflictPending => '待决策';
+  @override
+  String get apply => '应用';
+  @override
+  String get actionButton => '去决策';
+  @override
+  String get actionHint => '需要先决策冲突才能完成同步。可在集中列表里逐个选择，或一次性应用默认动作。';
+}
+
+// Path: contactsPage.sections
+class Translations$contactsPage$sections$zh_CN extends Translations$contactsPage$sections$en {
+  Translations$contactsPage$sections$zh_CN.internal(TranslationsZhCn root) : this._root = root, super.internal(root);
+
+  final TranslationsZhCn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get paired => '已配对';
+  @override
+  String get nearby => '附近';
+}
+
+// Path: contactsPage.empty
+class Translations$contactsPage$empty$zh_CN extends Translations$contactsPage$empty$en {
+  Translations$contactsPage$empty$zh_CN.internal(TranslationsZhCn root) : this._root = root, super.internal(root);
+
+  final TranslationsZhCn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get none => '暂无联系人。其他 LocalSend 设备加入网络后会显示在此处。';
+  @override
+  String get filtered => '没有匹配的联系人。';
+}
+
+// Path: contactsPage.menu
+class Translations$contactsPage$menu$zh_CN extends Translations$contactsPage$menu$en {
+  Translations$contactsPage$menu$zh_CN.internal(TranslationsZhCn root) : this._root = root, super.internal(root);
+
+  final TranslationsZhCn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get rename => '重命名';
+  @override
+  String get fingerprint => '查看指纹';
+  @override
+  String get trust => '信任';
+  @override
+  String get untrust => '取消信任';
+  @override
+  String get delete => '删除';
+}
+
+// Path: contactsPage.renameDialog
+class Translations$contactsPage$renameDialog$zh_CN extends Translations$contactsPage$renameDialog$en {
+  Translations$contactsPage$renameDialog$zh_CN.internal(TranslationsZhCn root) : this._root = root, super.internal(root);
+
+  final TranslationsZhCn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get title => '重命名联系人';
+  @override
+  String get label => '显示名称';
+}
+
+// Path: contactsPage.trustDialog
+class Translations$contactsPage$trustDialog$zh_CN extends Translations$contactsPage$trustDialog$en {
+  Translations$contactsPage$trustDialog$zh_CN.internal(TranslationsZhCn root) : this._root = root, super.internal(root);
+
+  final TranslationsZhCn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get title => '信任此设备？';
+  @override
+  String body({required Object alias}) => '请确认下面的指纹与 "${alias}" 上显示的一致。信任后该设备可与你同步共享目录。';
+  @override
+  String get confirm => '信任';
+}
+
+// Path: contactDetailPage.tabs
+class Translations$contactDetailPage$tabs$zh_CN extends Translations$contactDetailPage$tabs$en {
+  Translations$contactDetailPage$tabs$zh_CN.internal(TranslationsZhCn root) : this._root = root, super.internal(root);
+
+  final TranslationsZhCn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get chat => '聊天';
+  @override
+  String get send => '发送';
+  @override
+  String get browse => '浏览';
+}
+
+// Path: contactDetailPage.chatPlaceholder
+class Translations$contactDetailPage$chatPlaceholder$zh_CN extends Translations$contactDetailPage$chatPlaceholder$en {
+  Translations$contactDetailPage$chatPlaceholder$zh_CN.internal(TranslationsZhCn root) : this._root = root, super.internal(root);
+
+  final TranslationsZhCn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get title => '聊天功能将在 v2 提供';
+  @override
+  String get body => 'LocalSend 设备间的文字消息将在后续版本中提供。';
+}
+
+// Path: contactDetailPage.sendHint
+class Translations$contactDetailPage$sendHint$zh_CN extends Translations$contactDetailPage$sendHint$en {
+  Translations$contactDetailPage$sendHint$zh_CN.internal(TranslationsZhCn root) : this._root = root, super.internal(root);
+
+  final TranslationsZhCn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get title => '发送文件';
+  @override
+  String body({required Object alias}) => '切换到「发送」标签为 "${alias}" 挑选文件。本视图的联系人列表为只读。';
+}
+
+// Path: contactDetailPage.browseHint
+class Translations$contactDetailPage$browseHint$zh_CN extends Translations$contactDetailPage$browseHint$en {
+  Translations$contactDetailPage$browseHint$zh_CN.internal(TranslationsZhCn root) : this._root = root, super.internal(root);
+
+  final TranslationsZhCn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get title => '浏览共享目录';
+  @override
+  String body({required Object alias}) => '查看 "${alias}" 在网络上共享的目录。完整目录选择器将在另一页打开。';
+  @override
+  String get action => '浏览共享目录';
+}
+
+// Path: pendingSyncPage.empty
+class Translations$pendingSyncPage$empty$zh_CN extends Translations$pendingSyncPage$empty$en {
+  Translations$pendingSyncPage$empty$zh_CN.internal(TranslationsZhCn root) : this._root = root, super.internal(root);
+
+  final TranslationsZhCn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get none => '没有需要解决的冲突。开始一次同步即可看到需要你决策的项。';
+  @override
+  String get resolved => '所有冲突已解决。点击「应用」完成同步。';
+}
+
+// Path: pendingSyncPage.bulk
+class Translations$pendingSyncPage$bulk$zh_CN extends Translations$pendingSyncPage$bulk$en {
+  Translations$pendingSyncPage$bulk$zh_CN.internal(TranslationsZhCn root) : this._root = root, super.internal(root);
+
+  final TranslationsZhCn _root; // ignore: unused_field
+
+  // Translations
+  @override
+  String get keepLocal => '保留本地';
+  @override
+  String get takeRemote => '下载覆盖';
+  @override
+  String get skip => '跳过';
 }
 
 // Path: troubleshootPage.firewall

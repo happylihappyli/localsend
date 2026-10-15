@@ -3,6 +3,10 @@ version: 1
 script:
   # Workaround for error in Github Actions (https://github.com/AppImageCrafters/appimage-builder/issues/271)
   - which mksquashfs || apt install squashfs-tools
+  # 强制清掉 AppDir 里的 glib/gio/gobject/gmodule，强制走宿主系统库。
+  # 留着会撞 `g_once_init_enter_pointer` symbol lookup error（项目记忆已记）。
+  # 2>/dev/null + exit 0：apt 源里没拉到时不阻断 appimage-builder。
+  - sh -c 'rm -f /usr/lib/x86_64-linux-gnu/libglib-2.0.so* /usr/lib/x86_64-linux-gnu/libgio-2.0.so* /usr/lib/x86_64-linux-gnu/libgobject-2.0.so* /usr/lib/x86_64-linux-gnu/libgmodule-2.0.so* 2>/dev/null; exit 0'
 
 AppDir:
   path: AppDir
@@ -29,16 +33,24 @@ AppDir:
       - sourceline: deb http://security.ubuntu.com/ubuntu/ jammy-security universe
       - sourceline: deb http://security.ubuntu.com/ubuntu/ jammy-security multiverse
     include:
+      - libgtk-3-common:amd64
       - libayatana-appindicator3-1:amd64
       - librsvg2-common:amd64
-    exclude:
-      - adwaita-icon-theme:*
+      - fonts-noto-core:amd64
+      - adwaita-icon-theme:amd64
   runtime:
     env:
       XDG_DATA_DIRS: '/usr/local/share/:/usr/share/:${XDG_DATA_DIRS}'
+      GTK_THEME: 'Adwaita'
   files:
     include: []
     exclude:
+      # 强制走宿主 glib（Flutter 编译期已链系统 glib，AppDir 里的副本会版本过老触发
+      # `undefined symbol: g_once_init_enter_pointer`）。files.exclude 是保险，script rm 是兜底。
+      - usr/lib/x86_64-linux-gnu/libglib-2.0.so*
+      - usr/lib/x86_64-linux-gnu/libgio-2.0.so*
+      - usr/lib/x86_64-linux-gnu/libgobject-2.0.so*
+      - usr/lib/x86_64-linux-gnu/libgmodule-2.0.so*
       - usr/share/man
       - usr/share/doc/*/README.*
       - usr/share/doc/*/changelog.*

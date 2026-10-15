@@ -7,9 +7,11 @@ import 'package:localsend_app/pages/about/about_page.dart';
 import 'package:localsend_app/pages/changelog_page.dart';
 import 'package:localsend_app/pages/donation/donation_page.dart';
 import 'package:localsend_app/pages/settings/network_interfaces_page.dart';
+import 'package:localsend_app/pages/sync_shares_page.dart';
 import 'package:localsend_app/pages/tabs/settings_tab_controller.dart';
 import 'package:localsend_app/provider/network/server/server_provider.dart';
 import 'package:localsend_app/provider/settings_provider.dart';
+import 'package:localsend_app/provider/sync/sync_shares_provider.dart';
 import 'package:localsend_app/provider/version_provider.dart';
 import 'package:localsend_app/util/alias_generator.dart';
 import 'package:localsend_app/util/device_type_ext.dart';
@@ -520,6 +522,28 @@ class SettingsTab extends StatelessWidget {
                       t.settingsTab.network.multicastGroupWarning(defaultMulticast: defaultMulticastGroup),
                       style: const TextStyle(color: Colors.grey),
                     ),
+                  ),
+                ),
+              ],
+            ),
+            _SettingsSection(
+              title: t.settingsTab.syncShares.title,
+              children: [
+                _ButtonEntry(
+                  label: t.settingsTab.syncShares.shares,
+                  buttonLabel: switch (ref.watch(syncSharesProvider).length) {
+                    0 => t.general.open,
+                    final n => '$n',
+                  },
+                  onTap: () async {
+                    await context.push(() => const SyncSharesPage());
+                  },
+                ),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(12, 0, 12, 4),
+                  child: Text(
+                    t.settingsTab.syncShares.restartHint,
+                    style: TextStyle(color: Theme.of(context).hintColor, fontSize: 12),
                   ),
                 ),
               ],

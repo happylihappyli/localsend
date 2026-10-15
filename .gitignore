@@ -22,3 +22,16 @@
 
 # Generated at build time by makepri (see support/scripts/compile_windows_msix_helper.ps1)
 /support/build/msix/content/resources.pri
+.tools/
+.venv/
+
+AppDir/runtime/
+
+AppDir/data/flutter_assets/packages/
+
+AppDir/
+appimage-build/apt/archives/
+
+
+appimage-build/apt/
+

@@ -268,6 +268,7 @@ pub async fn start_server(
             pin,
             verify_checksums,
             event_tx,
+            sync_shares: vec![],
         }),
         web_config,
         stop_rx,
